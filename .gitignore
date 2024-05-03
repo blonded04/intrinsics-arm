@@ -1,5 +1,6 @@
 # VSCode history files
 .history
+.vscode
 
 # Prerequisites
 *.d
