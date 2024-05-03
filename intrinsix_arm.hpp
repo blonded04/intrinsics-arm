@@ -25,7 +25,7 @@ inline void machine_pause(unsigned pause_count) noexcept {
     }
 }
 
-inline int64_t get_cpu_cycles() {
+inline int64_t get_cpu_cycles() noexcept {
     int64_t timer_value;
     asm volatile ("mrs %0, cntvct_el0" : "=r"(timer_value));
     return timer_value;
@@ -33,7 +33,7 @@ inline int64_t get_cpu_cycles() {
 
 enum cache_level    { L1CACHE, L2CACHE, L3CACHE };
 
-inline void memory_prefetch_load_aligned(void* data, cache_level cache) {
+inline void memory_prefetch_load_aligned(void* data, cache_level cache) noexcept {
     switch (cache) {
     case L1CACHE:
         asm volatile ("prfm pldl1keep, [%0, %1]" : "+r"(data) : "r"(uint64_t(64)) : "memory", "cc");
@@ -47,7 +47,7 @@ inline void memory_prefetch_load_aligned(void* data, cache_level cache) {
     }
 }
 
-inline void memory_prefetch_store_aligned(void* data, cache_level cache) {
+inline void memory_prefetch_store_aligned(void* data, cache_level cache) noexcept {
     switch (cache) {
     case L1CACHE:
         asm volatile ("prfm pstl1keep, [%0]" : : "r"(data) : "memory", "cc");
