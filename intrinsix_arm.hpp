@@ -6,6 +6,8 @@
        ", while target architecture is not ARM64"
 #endif  // __aarch64__
 
+#define INTRINSIX_ARM_ALWAYS_INLINE_ __attribute__((always_inline))
+
 #include <cstdint>
 
 #ifdef __cplusplus
@@ -15,7 +17,7 @@ extern "C" {
 // namespace xa: intrinsiX Arm
 namespace xa {
 
-inline void machine_pause(unsigned pause_count) noexcept {
+inline void INTRINSIX_ARM_ALWAYS_INLINE_ machine_pause(unsigned pause_count) noexcept {
     while (pause_count--) {
         //  Some codebases use `yield` instruction instead.
         //  However, oneTBB and Rust consider `isb sy` better
@@ -25,7 +27,7 @@ inline void machine_pause(unsigned pause_count) noexcept {
     }
 }
 
-inline int64_t get_cpu_cycles() noexcept {
+inline int64_t INTRINSIX_ARM_ALWAYS_INLINE_ get_cpu_cycles() noexcept {
     int64_t timer_value;
     asm volatile ("mrs %0, cntvct_el0" : "=r"(timer_value));
     return timer_value;
@@ -33,7 +35,7 @@ inline int64_t get_cpu_cycles() noexcept {
 
 enum cache_level    { L1CACHE, L2CACHE, L3CACHE };
 
-inline void memory_prefetch_load_aligned(void* data, cache_level cache) noexcept {
+inline void INTRINSIX_ARM_ALWAYS_INLINE_ memory_prefetch_load_aligned(void* data, cache_level cache) noexcept {
     switch (cache) {
     case L1CACHE:
         asm volatile ("prfm pldl1keep, [%0, %1]" : "+r"(data) : "r"(uint64_t(64)) : "memory", "cc");
@@ -47,7 +49,7 @@ inline void memory_prefetch_load_aligned(void* data, cache_level cache) noexcept
     }
 }
 
-inline void memory_prefetch_store_aligned(void* data, cache_level cache) noexcept {
+inline void INTRINSIX_ARM_ALWAYS_INLINE_ memory_prefetch_store_aligned(void* data, cache_level cache) noexcept {
     switch (cache) {
     case L1CACHE:
         asm volatile ("prfm pstl1keep, [%0]" : : "r"(data) : "memory", "cc");
