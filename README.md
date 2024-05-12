@@ -1,6 +1,6 @@
 # intrinsiX for ARM64
 
-Header-only C and C++ ARM64 intrinsics for performance engineering, HPC, prototyping algorithms, or whatever you want.
+Header-only C and C++ ARM64 assembly intrinsics for performance engineering, HPC, prototyping lock-free algorithms, or whatever you want.
 
 [![Standard](https://img.shields.io/badge/c%2B%2B-11/14/17/20/23-blue.svg)](https://en.wikipedia.org/wiki/C%2B%2B#Standardization)
 [![License](https://img.shields.io/badge/license-Unlicense-blue.svg)](https://opensource.org/licenses/Unlicense)
