@@ -40,7 +40,7 @@ namespace xa {
         break;\
     }
 
-inline bool dw_compare_exchange_weak(volatile __uint128_t& storage, void* expected, void* desired, std::memory_order order) {
+inline bool INTRINSIX_ARM_ALWAYS_INLINE dw_compare_exchange_weak(volatile __uint128_t& storage, void* expected, void* desired, std::memory_order order) {
     std::uint64_t original[2];
     std::uint64_t e[2], d[2];
     std::memcpy(e, expected, 16);
@@ -71,7 +71,7 @@ inline bool dw_compare_exchange_weak(volatile __uint128_t& storage, void* expect
     return success;
 }
 
-inline bool dw_compare_exchange_strong(volatile __uint128_t& storage, void* expected, void* desired, std::memory_order order) {
+inline bool INTRINSIX_ARM_ALWAYS_INLINE dw_compare_exchange_strong(volatile __uint128_t& storage, void* expected, void* desired, std::memory_order order) {
     std::uint64_t original[2];
     std::uint64_t e[2], d[2];
     std::memcpy(e, expected, 16);
