@@ -105,7 +105,6 @@ inline bool dw_compare_exchange_strong(volatile __uint128_t& storage, void* expe
 
 #undef INTRINSIX_ARM_MEMORY_ORDER_SWITCH
 
-
 }  // namespace xa
 
 #ifdef __cplusplus
