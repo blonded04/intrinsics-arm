@@ -38,12 +38,16 @@ public:
 };
 ```
 
-### Currently present
+## Currently present
 
 Currently there are a few functions, only the ones I tend to use frequently. Thankfully, most memory-barriers are already implemented in C 11 and C++ 11.
 
+* `dw_compare_exchange_weak` and `dw_compare_exchange_strong`, double-word CAS instructions. 
+* `get_cpu_cycles`, same as x86 `rdtsc` instruction.
 * `machine_pause`, same as x86 `pause` instruction.
 * `memory_prefetch_load_aligned` and `memory_prefetch_store_aligned`, same as x86 `prefetch` instruction.
-* `get_cpu_cycles`, same as x86 `rdtsc` instruction.
 
 Feel free to open an issue or a pull-request regarding instructions you are interested in.
+
+## License
+This code is licensed under The Unlicense, which means that you are free to do anything you want with this code.
